@@ -237,7 +237,7 @@ class _StatsBar extends StatelessWidget {
         ),
         Container(
           height: 15,
-          width: stat,
+          width: stat > 200 ? 200 : stat,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
             color: color,
