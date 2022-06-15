@@ -14,7 +14,7 @@ class PokemonService implements IPokemonService {
   @override
   Future<List<PokemonData>> getPokemons() async {
     final response = await _connect.get(
-      prefix,
+      '/$prefix/?offset=0&limit=10228',
       decoder: GetPokemonResponse.fromJson,
     );
 
