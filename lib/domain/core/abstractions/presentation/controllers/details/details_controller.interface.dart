@@ -16,5 +16,6 @@ abstract class IDetailsController {
   IStreamField<InfoModel?> get infos;
   IStreamField<List<StatsModel>?> get stats;
 
-  PokemonModel get pokemon;
+  PokemonModel? get pokemon;
+  String? get search;
 }

@@ -63,7 +63,8 @@ IDetailsController makeDetailsController({
 }) {
   final arguments = Get.arguments as Map<String, dynamic>?;
 
-  PokemonModel pokemon = arguments?['pokemon'];
+  PokemonModel? pokemon = arguments?['pokemon'];
+  String? search = arguments?['search'];
 
   return DetailsController(
     pokemonRepository: pokemonRepository,
@@ -73,5 +74,6 @@ IDetailsController makeDetailsController({
     stats: stats,
     infos: infos,
     pokemon: pokemon,
+    search: search,
   );
 }

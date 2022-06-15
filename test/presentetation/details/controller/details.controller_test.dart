@@ -25,7 +25,8 @@ void main() {
       infos: makeInfos(),
       stats: makeStats(),
       types: makeTypes(),
-      pokemon: const PokemonModel(name: 'Bulbasauro', url: 'url'),
+      pokemon: const PokemonModel(name: 'bulbasaur', url: 'url'),
+      search: 'bulbasaur',
     );
   });
 
@@ -34,7 +35,7 @@ void main() {
     () async {
       when(
         () => pokemonRepository.getPokemonDetails(
-          name: detailsController.pokemon.name,
+          name: detailsController.pokemon?.name ?? detailsController.search!,
         ),
       ).thenAnswer((_) async => pokemonDetailMock);
 
@@ -42,7 +43,7 @@ void main() {
 
       verify(
         () => pokemonRepository.getPokemonDetails(
-          name: detailsController.pokemon.name,
+          name: detailsController.pokemon?.name ?? detailsController.search!,
         ),
       );
 
@@ -56,7 +57,7 @@ void main() {
   test('Shoul load types with success', () async {
     when(
       () => pokemonRepository.getPokemonDetails(
-        name: detailsController.pokemon.name,
+        name: detailsController.pokemon?.name ?? detailsController.search!,
       ),
     ).thenAnswer((_) async => pokemonDetailMock);
 
@@ -64,7 +65,7 @@ void main() {
 
     verify(
       () => pokemonRepository.getPokemonDetails(
-        name: detailsController.pokemon.name,
+        name: detailsController.pokemon?.name ?? detailsController.search!,
       ),
     );
 
@@ -74,7 +75,7 @@ void main() {
   test('Shoul load stats with success', () async {
     when(
       () => pokemonRepository.getPokemonDetails(
-        name: detailsController.pokemon.name,
+        name: detailsController.pokemon?.name ?? detailsController.search!,
       ),
     ).thenAnswer((_) async => pokemonDetailMock);
 
@@ -82,7 +83,7 @@ void main() {
 
     verify(
       () => pokemonRepository.getPokemonDetails(
-        name: detailsController.pokemon.name,
+        name: detailsController.pokemon?.name ?? detailsController.search!,
       ),
     );
 
@@ -92,7 +93,7 @@ void main() {
   test('Shoul load infos with success', () async {
     when(
       () => pokemonRepository.getPokemonDetails(
-        name: detailsController.pokemon.name,
+        name: detailsController.pokemon?.name ?? detailsController.search!,
       ),
     ).thenAnswer((_) async => pokemonDetailMock);
 
@@ -100,7 +101,7 @@ void main() {
 
     verify(
       () => pokemonRepository.getPokemonDetails(
-        name: detailsController.pokemon.name,
+        name: detailsController.pokemon?.name ?? detailsController.search!,
       ),
     );
 
