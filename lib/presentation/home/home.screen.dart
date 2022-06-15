@@ -3,6 +3,7 @@ import 'package:ekko/domain/core/models/callback.model.dart';
 import 'package:ekko/domain/core/utils/snackbar.util.dart';
 import 'package:ekko/infrastructure/dal/inject.dart';
 import 'package:ekko/presentation/home/widgets/grid.widget.dart';
+import 'package:ekko/presentation/home/widgets/text_field.widget.dart';
 import 'package:ekko/presentation/shared/loading/loading.widget.dart';
 import 'package:flutter/material.dart';
 
@@ -39,6 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             body: Column(
               children: [
+                TextFieldWidget(),
                 Expanded(child: GridWidget()),
               ],
             ),
