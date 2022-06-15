@@ -20,7 +20,7 @@ class DetailsScreen extends ViewController<IDetailsController> {
               FotoWidget(),
               const SizedBox(height: 20),
               Padding(
-                padding: const EdgeInsets.only(left: 30, right: 30),
+                padding: const EdgeInsets.only(left: 50, right: 50),
                 child: Column(
                   children: [
                     StreamBuilder<InfoModel?>(
