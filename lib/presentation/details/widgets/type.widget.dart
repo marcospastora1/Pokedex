@@ -12,16 +12,8 @@ class TypeWidget extends ViewController<IDetailsController> {
         return SizedBox(
           height: 30,
           child: Center(
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              itemCount: snapshot.hasData ? snapshot.data!.length : 0,
-              separatorBuilder: (_, __) => const SizedBox(width: 50),
-              itemBuilder: (_, index) {
-                return _ItemTypeWidget(
-                  type: snapshot.data![index].type.name,
-                  color: snapshot.data![index].colorType,
-                );
-              },
+            child: _ItemTypeWidget(
+              type: snapshot.hasData ? snapshot.data! : [],
             ),
           ),
         );
@@ -31,23 +23,63 @@ class TypeWidget extends ViewController<IDetailsController> {
 }
 
 class _ItemTypeWidget extends StatelessWidget {
-  final String type;
-  final Color color;
+  final List? type;
 
-  const _ItemTypeWidget({required this.type, required this.color});
+  const _ItemTypeWidget({required this.type});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      //padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
-      width: 125,
-      child: Center(
-        child: Text(type, style: const TextStyle(color: Colors.white)),
-      ),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        color: color,
-      ),
+    return Row(
+      mainAxisAlignment: type!.length > 1
+          ? MainAxisAlignment.spaceBetween
+          : MainAxisAlignment.center,
+      children: [
+        Container(
+          width: 125,
+          child: Center(
+            child: Text(
+              type != null
+                  ? type!.isNotEmpty
+                      ? type!.first.type.name
+                      : ''
+                  : '',
+              style: const TextStyle(color: Colors.white),
+            ),
+          ),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            color: type != null
+                ? type!.isNotEmpty
+                    ? type!.first.colorType
+                    : Colors.transparent
+                : Colors.transparent,
+          ),
+        ),
+        Visibility(
+          visible: type != null ? type!.length > 1 : false,
+          child: Container(
+            width: 125,
+            child: Center(
+              child: Text(
+                type != null
+                    ? type!.isNotEmpty
+                        ? type!.last.type.name
+                        : ''
+                    : '',
+                style: const TextStyle(color: Colors.white),
+              ),
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: type != null
+                  ? type!.isNotEmpty
+                      ? type!.last.colorType
+                      : Colors.transparent
+                  : Colors.transparent,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
