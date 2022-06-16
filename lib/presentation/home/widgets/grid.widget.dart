@@ -31,10 +31,6 @@ class GridWidget extends ViewController<IHomeController> {
       itemCount: controller.pokemons.value!.length,
       itemBuilder: (_, index) {
         return _PokemonWidget(
-          loadSprites: () => controller.loadSprites(
-            name: controller.pokemons.value![index].name,
-            onError: onError,
-          ),
           pokemon: controller.pokemons.value!,
           index: index,
           sprite: controller.sprites.value,
@@ -50,14 +46,12 @@ class _PokemonWidget extends StatelessWidget {
   final int index;
   final SpritesModel? sprite;
   final VoidCallback onTap;
-  final VoidCallback loadSprites;
 
   const _PokemonWidget({
     required this.pokemon,
     required this.index,
     required this.sprite,
     required this.onTap,
-    required this.loadSprites,
   });
 
   @override
