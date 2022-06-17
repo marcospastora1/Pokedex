@@ -10,8 +10,6 @@ import 'package:ekko/infrastructure/dal/services/pokemon/dto/get_pokemon_details
 const successPokemonResponse = Response(
   statusCode: 200,
   payload: GetPokemonResponse(
-    next: 'next',
-    previous: 'previous',
     results: [PokemonData(name: 'Charmander', url: 'url')],
   ),
 );
@@ -19,8 +17,6 @@ const successPokemonResponse = Response(
 const errorPokemonResponse = Response(
   statusCode: 400,
   payload: GetPokemonResponse(
-    next: null,
-    previous: null,
     results: null,
   ),
 );
