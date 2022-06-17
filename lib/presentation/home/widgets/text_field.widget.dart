@@ -6,9 +6,11 @@ import 'package:flutter/material.dart';
 class TextFieldWidget extends ViewController<IHomeController> {
   @override
   Widget build(BuildContext context) {
+    final controllerText = TextEditingController(text: '');
     return Padding(
       padding: const EdgeInsets.all(10),
       child: TextField(
+        controller: controllerText,
         textAlign: TextAlign.center,
         onSubmitted: (text) {
           Navigator.of(context).pushNamed(
