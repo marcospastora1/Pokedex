@@ -18,7 +18,7 @@ void main() {
   });
 
   group('Get pokemons', () {
-    const url = 'pokemon';
+    const url = '/pokemon/?offset=0&limit=10228';
 
     test(
       'Should return pokemons with success',
@@ -44,7 +44,7 @@ void main() {
     );
   });
 
-  group('Should return sprites', () {
+  group('Should return pokemon details', () {
     const name = 'bulbasaur';
     const url = 'pokemon/$name';
     test(
