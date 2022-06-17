@@ -17,6 +17,7 @@ class GridWidget extends ViewController<IHomeController> {
       Routes.details,
       arguments: {'pokemon': controller.pokemons.value![index]},
     );
+    FocusScope.of(context).unfocus();
   }
 
   @override
