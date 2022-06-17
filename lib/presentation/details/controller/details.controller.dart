@@ -2,6 +2,7 @@ import 'package:ekko/domain/core/abstractions/domain/repositories/pokemon_reposi
 import 'package:ekko/domain/core/abstractions/presentation/controllers/details/details_controller.interface.dart';
 import 'package:ekko/domain/core/abstractions/presentation/field.interface.dart';
 import 'package:ekko/domain/core/abstractions/presentation/stream_field.interface.dart';
+import 'package:ekko/domain/core/models/callback.model.dart';
 import 'package:ekko/domain/pokemon/models/infos.model.dart';
 import 'package:ekko/domain/pokemon/models/pokemon.model.dart';
 import 'package:ekko/domain/pokemon/models/stats.model.dart';
@@ -38,15 +39,6 @@ class DetailsController extends GetxController implements IDetailsController {
         _search = search;
 
   @override
-  Future<void> onReady() async {
-    await loadSprites();
-    await loadInfos();
-    await loadStats();
-    await loadTypes();
-    super.onReady();
-  }
-
-  @override
   IField<String> get sprites => _sprites;
 
   @override
@@ -65,60 +57,18 @@ class DetailsController extends GetxController implements IDetailsController {
   String? get search => _search;
 
   @override
-  Future<void> loadSprites() async {
+  Future<void> loadPokemonDetails({required CallBack<String> onError}) async {
     try {
       _loading.isLoading = true;
       final response = await _pokemonRepository.getPokemonDetails(
         name: pokemon?.name ?? search!,
       );
-      sprites.value = response.sprites.other.officialArtWork.frontDefault;
-    } catch (err) {
-      rethrow;
-    } finally {
-      _loading.isLoading = false;
-    }
-  }
-
-  @override
-  Future<void> loadTypes() async {
-    try {
-      _loading.isLoading = true;
-      final response = await _pokemonRepository.getPokemonDetails(
-        name: pokemon?.name ?? search!,
-      );
+      _sprites.value = response.sprites.other.officialArtWork.frontDefault;
       _types.value = response.types;
-    } catch (err) {
-      rethrow;
-    } finally {
-      _loading.isLoading = false;
-    }
-  }
-
-  @override
-  Future<void> loadStats() async {
-    try {
-      _loading.isLoading = true;
-      final response = await _pokemonRepository.getPokemonDetails(
-        name: pokemon?.name ?? search!,
-      );
+      _infos.value = response.infos;
       _stats.value = response.stats;
     } catch (err) {
-      rethrow;
-    } finally {
-      _loading.isLoading = false;
-    }
-  }
-
-  @override
-  Future<void> loadInfos() async {
-    try {
-      _loading.isLoading = true;
-      final response = await _pokemonRepository.getPokemonDetails(
-        name: pokemon?.name ?? search!,
-      );
-      _infos.value = response.infos;
-    } catch (err) {
-      rethrow;
+      onError('Tente escrever o nome do pokemon em inglês');
     } finally {
       _loading.isLoading = false;
     }
