@@ -5,13 +5,9 @@ part 'get_pokemon.response.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class GetPokemonResponse {
-  final String? next;
-  final String? previous;
   final List<PokemonData>? results;
 
   const GetPokemonResponse({
-    required this.next,
-    required this.previous,
     required this.results,
   });
 

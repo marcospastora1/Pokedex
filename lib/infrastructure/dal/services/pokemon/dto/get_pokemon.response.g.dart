@@ -8,8 +8,6 @@ part of 'get_pokemon.response.dart';
 
 GetPokemonResponse _$GetPokemonResponseFromJson(Map<String, dynamic> json) =>
     GetPokemonResponse(
-      next: json['next'] as String?,
-      previous: json['previous'] as String?,
       results: (json['results'] as List<dynamic>?)
           ?.map((e) => PokemonData.fromJson(e))
           .toList(),
@@ -17,7 +15,5 @@ GetPokemonResponse _$GetPokemonResponseFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$GetPokemonResponseToJson(GetPokemonResponse instance) =>
     <String, dynamic>{
-      'next': instance.next,
-      'previous': instance.previous,
       'results': instance.results?.map((e) => e.toJson()).toList(),
     };
