@@ -13,16 +13,22 @@ class TextFieldWidget extends ViewController<IHomeController> {
         onSubmitted: (text) {
           Navigator.of(context).pushNamed(
             Routes.details,
-            arguments: {'search': text},
+            arguments: {'search': text.toLowerCase()},
           );
+          FocusScope.of(context).unfocus();
         },
         style: const TextStyle(
           color: Colors.white,
         ),
         decoration: const InputDecoration(
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.white),
+          ),
           labelText: 'Pesquise Aqui',
+          labelStyle: TextStyle(color: Colors.white),
           border: OutlineInputBorder(),
           hoverColor: Colors.white,
+          fillColor: Colors.white,
         ),
       ),
     );
