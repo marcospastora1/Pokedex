@@ -29,8 +29,9 @@ class PokemonService implements IPokemonService {
   }
 
   @override
-  Future<GetPokemonDetailsDataResponse> getPokemonsDetails(
-      {required String name}) async {
+  Future<GetPokemonDetailsDataResponse> getPokemonsDetails({
+    required String name,
+  }) async {
     final response = await _connect.get(
       '$prefix/$name',
       decoder: GetPokemonDetailsDataResponse.fromJson,
